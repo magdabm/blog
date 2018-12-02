@@ -1,25 +1,29 @@
 <h1>My articles</h1>
 <%= link_to 'New Article', new_article_path %>
 
-<table>
-   <tr>
-      <th>Title</th>
-      <th>Text</th>
-      <th>Comments amount</th>
-      <th></th>
-      <th></th>
-      <th></th>
-   </tr>
-   <% @articles.each do |article| %>
+<table class="table">
+   <thead>
       <tr>
-         <td><%= article.title %></td>
-         <td><%= article.text %></td>
-         <td><%= article.comments.count %></td>
-         <td><%= link_to 'Show', article_path(article) %></td>
-         <td><%= link_to 'Edit', edit_article_path(article) %></td>
-         <td><%= link_to 'Delete', article_path(article), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+         <th>Title</th>
+         <th>Text</th>
+         <th>Comments amount</th>
+         <th></th>
+         <th></th>
+         <th></th>
       </tr>
-   <% end %>
+   </thead>
+   <tbody>
+      <% @articles.each do |article| %>
+         <tr>
+            <td><%= article.title %></td>
+            <td><%= article.text %></td>
+            <td><%= article.comments.count %></td>
+            <td><%= link_to 'Show', article_path(article) %></td>
+            <td><%= link_to 'Edit', edit_article_path(article) %></td>
+            <td><%= link_to 'Delete', article_path(article), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+         </tr>
+      <% end %>
+   </tbody>
 </table>
-
+<br>
 Articles: <%= @articles.count %>
