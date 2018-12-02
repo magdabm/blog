@@ -10,5 +10,28 @@
    <%= @article.text %>
 </p>
 
-<%= link_to 'Back', articles_path %>
 <%= link_to 'Edit', edit_article_path(@article) %>
+
+<br>
+<br>
+<br>
+
+<%= form_for @article.comments.new do |f| %>
+   <%= f.hidden_field :article_id %>
+   <p>
+      <%= f.label :commenter %>
+      <%= f.text_field :commenter %>
+   </p>
+   <p>
+      <%= f.label :body %>  <br>
+      <%= f.text_area :body %>
+   </p>
+   <p>
+      <%= f.submit %>
+   </p>
+<% end %>
+
+<br>
+<br>
+
+<%= link_to 'Back', articles_path %>
