@@ -6,5 +6,12 @@
    <strong>Text:</strong>
    <%= simple_format(comment.body) %>
 </p>
+<p>
+   <strong>Date:</strong>
+   <%= comment.created_at %>
+</p>
+
+
+<%= link_to 'Edit', edit_article_comment_path(article_id: comment.article.id, id: comment.id) %>
 <%= link_to 'Destroy', article_comment_path(article_id: comment.article.id, id: comment.id), method: :delete, data: { confirm: 'Are you sure?' } %>
 <hr />
