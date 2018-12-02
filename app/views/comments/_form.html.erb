@@ -1,5 +1,5 @@
-<%= form_for @article.comments.new do |f| %>
-   <%= f.hidden_field :article_id %>
+<%= form_for [@article, @article.comments.new] do |f| %>
+   <!-- <%= f.hidden_field :article_id %> jeśli mamy przypisanie komantarza do artykułu możemy pozbyć się odwołania do article_id--> 
    <p>
       <%= f.label :commenter %>
       <%= f.text_field :commenter %>
