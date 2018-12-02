@@ -16,6 +16,21 @@
 <br>
 <br>
 
+<h1>Comments</h1>
+
+<% @article.comments.each do |comment| %>
+<p>
+   <strong>Commenter:</strong>
+   <%= comment.commenter %>
+</p>
+<p>
+   <strong>Text:</strong>
+   <%= comment.body %>
+</p>
+<hr />
+<% end %>
+
+
 <%= form_for @article.comments.new do |f| %>
    <%= f.hidden_field :article_id %>
    <p>
