@@ -4,8 +4,11 @@ class CommentsController < ApplicationController
    def create
       @comment = Comment.new(comment_params)
       @comment.article = @article
-      @comment.save
-      redirect_to article_path(@article)
+      if @comment.save
+         redirect_to article_path(@article)
+      else
+         render 'articles/show'
+      end
    end
 
    def destroy
