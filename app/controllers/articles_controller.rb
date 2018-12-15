@@ -15,6 +15,7 @@ class ArticlesController < ApplicationController
 
    def create
       @article = Article.new(article_params)
+      @article.user = current_user if current_user
       if @article.save
          redirect_to article_path(@article)
       else
@@ -51,7 +52,7 @@ class ArticlesController < ApplicationController
 
    private
    def article_params
-      params.require(:article).permit(:title, :text, :tags)
+      params.require(:article).permit(:title, :text, :tags, :user)
    end
 
    def find_article

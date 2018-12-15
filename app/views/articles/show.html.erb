@@ -9,7 +9,10 @@
    <strong>Text:</strong>
    <%= @article.text %>
 </p>
-
+<p>
+   <strong>Author:</strong>
+   <%= @article.user.email %>
+</p>
 <p>
    <strong>Tags:</strong>
    <% @article.tags.each do |tag| %>
