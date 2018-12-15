@@ -1,5 +1,5 @@
 <h1>My Article</h1>
-
+<br>
 <p>
    <strong>Title:</strong>
    <%= @article.title %>
@@ -9,10 +9,15 @@
    <strong>Text:</strong>
    <%= @article.text %>
 </p>
+
 <p>
    <strong>Tags:</strong>
-   <%= @article.tags %>
+   <% @article.tags.each do |tag| %>
+      <%= link_to tag, articles_path(q: tag), class: "badge badge-pill badge-dark" %>
+   <% end %>
 </p>
+
+
 
 <%= link_to 'Edit', edit_article_path(@article) %>
 <%= link_to 'Delete', article_path(@article), method: :delete, data: { confirm: 'Are you sure?' } %>

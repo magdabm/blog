@@ -1,6 +1,6 @@
 <%= render 'common/errors', model: @comment %>
 
-
+<h3> Add new comment: </h3>
 <%= form_for [@article, @comment] do |f| %>
    <!-- <%= f.hidden_field :article_id %> jeśli mamy przypisanie komantarza do artykułu możemy pozbyć się odwołania do article_id-->
    <div class="form-group">
