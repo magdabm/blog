@@ -5,6 +5,8 @@ class ArticlesController < ApplicationController
 
    def index
       @articles = Article.all.order(id: :desc)
+      @articles = @articles.where("? = any(tags)", params[:q]) if params[:q].present?
+      # lub @articles = @articles.select { |a| a.tags.include? params[:q] } if params[:q].present?
    end
 
    def new
@@ -39,6 +41,13 @@ class ArticlesController < ApplicationController
       @article.destroy
       redirect_to articles_path
    end
+
+   # def search
+   #    @articles = Article.all
+   #    @articles do |article|
+   #       article.tags.select :q
+   #    end
+   # end
 
    private
    def article_params
