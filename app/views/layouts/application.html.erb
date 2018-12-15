@@ -10,8 +10,30 @@
   </head>
 
   <body>
-     <div class="container">
+    <% if notice %>
+      <div class="alert alert-info">
+         <%= notice %>
+      </div>
+   <% end %>
+
+   <% if alert %>
+      <div class="alert alert-danger">
+         <%= alert %>
+      </div>
+   <% else %>
+      <%= link_to 'Sign in', new_user_session_path %>
+      <%= link_to 'Sign up', new_user_registration_path %>
+   <% end %>
+
+   <% if user_signed_in? %>
+      <p>
+         Hello <%= current_user.email %>!
+         <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+      </p>
+   <% end %>
+
+   <div class="container">
         <%= yield %>
-     </div>
+   </div>
   </body>
 </html>
