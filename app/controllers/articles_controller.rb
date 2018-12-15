@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
-
+   http_basic_authenticate_with name: "admin", password: "secret",
+      except: [:index, :show]
    before_action :find_article, only: [:show, :edit, :update, :destroy] # zamiast wywoływać metodę find_article tam gdzie jest potrzebna można dodać before action
 
    def index
