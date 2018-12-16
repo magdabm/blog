@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
    has_many :articles
+   has_many :comments
 
    def admin?
       admin
