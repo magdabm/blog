@@ -3,6 +3,8 @@ class ArticlesController < ApplicationController
    http_basic_authenticate_with name: "admin", password: "secret",
       except: [:index, :show]
    before_action :find_article, only: [:show, :edit, :update, :destroy] # zamiast wywoływać metodę find_article tam gdzie jest potrzebna można dodać before action
+   before_action :authenticate_user!, except: [:show, :index]
+   before_action :authorize_article, only: [:edit, :update, :destroy]
 
    def index
       @articles = Article.all.order(id: :desc)
@@ -18,8 +20,8 @@ class ArticlesController < ApplicationController
       @article = Article.new(article_params)
       @article.user = current_user if current_user
       if @article.save
-         redirect_to article_path(@article)
          flash[:notice] = "Your article has beed succesfully saved in our data base."
+         redirect_to article_path(@article)
       else
          render 'new'
       end
@@ -30,11 +32,10 @@ class ArticlesController < ApplicationController
    end
 
    def edit
-      return unless authorize_article
    end
 
    def update
-      return unless authorize_article
+
       if @article.update(article_params)
          flash[:notice] = "Your article has been succesfully updated in our data base."
          redirect_to article_path(@article)
@@ -44,7 +45,7 @@ class ArticlesController < ApplicationController
    end
 
    def destroy
-      return unless authorize_article
+
       @article.destroy
       flash[:notice] = "Your article has been succesfully deleted from our data base."
       redirect_to welcome_index_path
