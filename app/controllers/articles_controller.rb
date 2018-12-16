@@ -18,6 +18,7 @@ class ArticlesController < ApplicationController
       @article.user = current_user if current_user
       if @article.save
          redirect_to article_path(@article)
+         flash[:notice] = "Your article has beed succesfully saved in our data base."
       else
          render 'new'
       end
@@ -28,10 +29,17 @@ class ArticlesController < ApplicationController
    end
 
    def edit
+      if @article.user != current_user
+         flash[:alert] = "You are not allowed to be here"
+         redirect_to welcome_index_path
+      else
+         render 'edit'
+      end
    end
 
    def update
       if @article.update(article_params)
+         flash[:notice] = "Your article has been succesfully updated in our data base."
          redirect_to article_path(@article)
       else
          render 'edit'
@@ -40,15 +48,9 @@ class ArticlesController < ApplicationController
 
    def destroy
       @article.destroy
+      flash[:notice] = "Your article has been succesfully deleted from our data base."
       redirect_to articles_path
    end
-
-   # def search
-   #    @articles = Article.all
-   #    @articles do |article|
-   #       article.tags.select :q
-   #    end
-   # end
 
    private
    def article_params
