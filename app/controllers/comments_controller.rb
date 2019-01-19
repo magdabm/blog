@@ -45,7 +45,7 @@ class CommentsController < ApplicationController
 
    def authorize_comment
       if @comment.user != current_user && !current_user&.admin?
-         flash[:alert] = "You are not allowed to be here"
+         flash[:alert] = "You are not allowed to be here."
          redirect_to welcome_index_path
          false
       else
