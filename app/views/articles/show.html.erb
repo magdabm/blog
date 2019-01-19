@@ -49,7 +49,7 @@
 <% else %>
 <h1>Comments</h1>
 
-<%= render @article.comments %>
+<%= render @article.comments.includes(:user) %>
 <%# to samo co <% @article.comments.each do |comment| %>
                   <%#= #render comment %>
                   <%# end %>

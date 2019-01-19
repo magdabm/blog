@@ -1,6 +1,6 @@
 <%= render 'common/errors', model: @article %>
 
-<%= form_for @article, url: article_path(@article) do |f| %>
+<%= form_for @article do |f| %>
    <div class="form-group">
       <%= f.label :title %>
       <%= f.text_field :title, class: 'form-control' %>
