@@ -1,7 +1,7 @@
 <%= render 'common/errors', model: @comment %>
 
-<%= form_for [@article, @comment] do |f| %>
-   <!-- <%= f.hidden_field :article_id %> jeśli mamy przypisanie komantarza do artykułu możemy pozbyć się odwołania do article_id-->
+<%= form_for [@article, @comment], url: article_comments_path(@article, @comment) do |f| %>
+
    <div class="form-group">
       <%= f.label :body %>  <br>
       <%= f.text_area :body, class: 'form-control' %>

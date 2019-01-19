@@ -1,4 +1,10 @@
 <h1>My Article</h1>
+<p>
+<% if sponsored_article?(@article) %>
+  <h4> Artykuł sponsorowany przez firmę <%= @article.company.name %></h4>
+<% end %>
+</p>
+<br>
 <br>
 <p>
    <strong>Title:</strong>
@@ -38,15 +44,18 @@
 <br>
 <br>
 
+<% if sponsored_article?(@article) %>
+  <p>Komentarze zablokowane</p>
+<% else %>
 <h1>Comments</h1>
 
 <%= render @article.comments %>
 <%# to samo co <% @article.comments.each do |comment| %>
                   <%#= #render comment %>
                   <%# end %>
-
+<h3> Add a comment </h3>
 <%= render 'comments/form' %>
-
+<% end %>
 <br>
 <br>
 

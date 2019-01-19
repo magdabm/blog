@@ -16,7 +16,7 @@
    </thead>
    <tbody>
       <% @articles.each do |article| %>
-         <tr>
+         <tr class="<%= article.css_class %>">
             <td><%= article.title %></td>
             <td><%= article.user.email %></td>
             <td><%= article.text %></td>

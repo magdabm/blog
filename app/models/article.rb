@@ -12,6 +12,10 @@ class Article < ApplicationRecord
       super(value)
    end
 
+   def css_class
+     'normal'
+   end
+
    private
 
    def sanitize_tags(text)
