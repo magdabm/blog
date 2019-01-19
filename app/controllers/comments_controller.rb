@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
       @comment = Comment.new(comment_params)
       @comment.article = @article
       @comment.user = current_user if current_user
+      @like = Like.find_or_initialize_by(article: @article, user: current_user)
       if @comment.save
          flash[:notice] = "Your comment has been added to the article."
          redirect_to article_path(@article)

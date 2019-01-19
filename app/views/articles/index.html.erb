@@ -7,6 +7,7 @@
          <th>Title</th>
          <th>Author</th>
          <th>Text</th>
+         <th>Likes</th>
          <th>Comments amount</th>
          <th></th>
          <th></th>
@@ -17,8 +18,9 @@
       <% @articles.each do |article| %>
          <tr>
             <td><%= article.title %></td>
-            <td><%= article.text %></td>
             <td><%= article.user.email %></td>
+            <td><%= article.text %></td>
+            <td><%= article.likes.size %></td>
             <td><%= article.comments.count %></td>
             <td><%= link_to 'Show', article_path(article) %></td>
             <td><%= link_to 'Edit', edit_article_path(article) if article.user == current_user || current_user&.admin? %></td>

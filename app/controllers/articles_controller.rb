@@ -28,6 +28,7 @@ class ArticlesController < ApplicationController
 
    def show
       @comment = Comment.new
+      @like = Like.find_or_initialize_by(article: @article, user: current_user)
    end
 
    def edit

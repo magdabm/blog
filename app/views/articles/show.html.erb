@@ -25,6 +25,17 @@
 
 <br>
 <br>
+
+<%= pluralize(@article.likes.count, 'person') %> liked this article
+<% if @like.persisted? %>
+  <i class="fa fa-thumbs-down"></i>
+  <%= link_to 'Unlike', article_like_path(@article, @like), method: :delete %>
+<% else %>
+  <i class="fa fa-thumbs-up"></i>
+  <%= link_to 'Like', article_likes_path(@article), method: :post %>
+<% end %>
+
+<br>
 <br>
 
 <h1>Comments</h1>
