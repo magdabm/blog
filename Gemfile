@@ -43,6 +43,7 @@ gem 'carrierwave', '~> 1.0'
 gem 'cloudinary'
 
 group :development, :test do
+  gem 'dotenv'
   gem 'pry-rails'
   gem 'pry-byebug'
 end
