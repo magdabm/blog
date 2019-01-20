@@ -34,7 +34,7 @@
    </tbody>
 </table>
 <br>
-Articles: <%= @articles.count %>
+Articles: <%= @articles.total_count %>
 <br>
 <br>
 <%= form_tag articles_path, method: :get do %>
@@ -45,5 +45,7 @@ Articles: <%= @articles.count %>
       </span>
    </div>
 <% end %>
-
+<br>
 <%= link_to 'New Article', new_article_path %>
+
+<%= paginate @articles, theme: 'twitter-bootstrap-4' %>
