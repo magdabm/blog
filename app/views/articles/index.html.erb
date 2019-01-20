@@ -1,5 +1,7 @@
 <h1>My articles</h1>
-<%= link_to 'New Article', new_article_path %>
+<br>
+<h3>Most commented article is <%= link_to @most_commented.title, article_path(@most_commented) %> <h3>
+
 
 <table class="table">
    <thead>
@@ -43,3 +45,5 @@ Articles: <%= @articles.count %>
       </span>
    </div>
 <% end %>
+
+<%= link_to 'New Article', new_article_path %>
