@@ -14,10 +14,14 @@
       <%= f.text_field :tags, class: 'form-control' %>
    </div>
    <div class="form-group">
-      <%= f.label :cover %>  <br>
-      <%= image_tag(@article.cover_url) if @article.cover? %>
-      <%= f.file_field :cover %>
-      <%= f.hidden_field :cover_cache %>
+      <p><%= f.label :cover %>  <br>
+        <%= image_tag(@article.cover_url) if @article.cover? %>
+        <%= f.file_field :cover %>
+        <%= f.hidden_field :cover_cache %></p>
+      <p><label>
+        <%= f.check_box :remove_cover %>
+        Remove avatar
+      </label></p>
    </div>
    <div class="form-group">
       <%= f.submit class: 'btn btn-primary' %>
