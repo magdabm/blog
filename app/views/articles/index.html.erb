@@ -1,6 +1,8 @@
 <h1>My articles</h1>
 <br>
+<% if @article.any? %>
 <h3>Most commented article is <%= link_to @most_commented.title, article_path(@most_commented) %> <h3>
+<% end %>
 
 
 <table class="table">
