@@ -53,10 +53,15 @@
 <%# to samo co <% @article.comments.each do |comment| %>
                   <%#= #render comment %>
                   <%# end %>
+<% end %>
 <h3> Add a comment </h3>
 <%= render 'comments/form' %>
-<% end %>
+
 <br>
 <br>
 
 <%= link_to 'Back', articles_path %>
+
+<% if current_user&.admin? %>
+  <%= link_to @article.published? ? "Unpublish" : "Publish", toggle_visibility_article_path(@article) %>
+<% end %>

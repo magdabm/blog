@@ -1,13 +1,18 @@
 class ArticlesController < ApplicationController
 
    http_basic_authenticate_with name: "admin", password: "secret", except: [:index, :show]
-   before_action :find_article, only: [:show, :edit, :update, :destroy]
+   before_action :find_article, only: [:show, :edit, :update, :destroy, :toggle_visibility]
    before_action :authenticate_user!, except: [:show, :index]
    before_action :authorize_article, only: [:edit, :update, :destroy]
 
    def index
-      @articles = Article.all.includes(:user).order(id: :desc)
-      @articles = @articles.where("? = any(tags)", params[:q]) if params[:q].present?
+     if current_user&.admin?
+       @articles = Article.all
+     else
+       @articles = Article.published
+     end
+     @articles = @articles.includes(:user).order(id: :desc)
+     @articles = @articles.where("? = any(tags)", params[:q]) if params[:q].present?
       # lub @articles = @articles.select { |a| a.tags.include? params[:q] } if params[:q].present?
    end
 
@@ -29,7 +34,6 @@ class ArticlesController < ApplicationController
    def show
       @comment = Comment.new
       @like = Like.find_or_initialize_by(article: @article, user: current_user)
-
 
       respond_to do |format|
         format.html do
@@ -67,6 +71,14 @@ class ArticlesController < ApplicationController
       redirect_to welcome_index_path
    end
 
+   def toggle_visibility
+     return redirect_to articles_path, alert: 'Not found' unless current_user&.admin?
+     @article.toggle!(:published)
+     flash[:notice] = 'Your article\'s visibility has benn changed'
+     redirect_to articles_path, notice: 'Your article\'s visibility has benn changed'
+   end
+
+
    private
 
    def authorize_article
@@ -84,6 +96,10 @@ class ArticlesController < ApplicationController
    end
 
    def find_article
-      @article = Article.find(params[:id])
+      @article =  if current_user&.admin?
+                    Article.find(params[:id])
+                  else
+                    Article.published.find(params[:id])
+                  end
    end
 end

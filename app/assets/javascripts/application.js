@@ -30,8 +30,8 @@ window.addEventListener('load', function () {
     request.addEventListener("load", function () {
       var summary = document.getElementById("summary-" + this.response.id);
       var text = "Comments: " + this.response.comments_count;
-      text += " | Likes: " + this.response.likes_count;
-      text += " | Views: " + this.response.views_count;
+      text += "\nLikes: " + this.response.likes_count;
+      text += "\nViews: " + this.response.views_count;
       summary.innerText = text;
     });
     element.innerText = "Loading";

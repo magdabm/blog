@@ -16,8 +16,9 @@ Rails.application.routes.draw do
   #resources :comments
 
   resources :articles do   # ten wpis zastępuje powyższe, aby każdy komantarz należał do odpowiedniego artykułu
-     resources :comments
-     resources :likes, only: %i[create destroy]
+    get 'toggle_visibility', on: :member
+    resources :comments
+    resources :likes, only: %i[create destroy]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
