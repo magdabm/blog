@@ -14,6 +14,12 @@
       <%= f.text_field :tags, class: 'form-control' %>
    </div>
    <div class="form-group">
+      <%= f.label :cover %>  <br>
+      <%= image_tag(@article.cover_url) if @article.cover? %>
+      <%= f.file_field :cover %>
+      <%= f.hidden_field :cover_cache %>
+   </div>
+   <div class="form-group">
       <%= f.submit class: 'btn btn-primary' %>
    </div>
 

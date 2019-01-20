@@ -93,7 +93,7 @@ class ArticlesController < ApplicationController
    end
 
    def article_params
-      params.require(:article).permit(:title, :text, :tags, :user, :type)
+      params.require(:article).permit(:title, :text, :tags, :user, :type, :cover)
    end
 
    def find_article

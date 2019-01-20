@@ -39,6 +39,7 @@ gem 'devise'
 gem 'font-awesome-rails'
 gem 'kaminari'
 gem 'bootstrap4-kaminari-views'
+gem 'carrierwave', '~> 1.0'
 
 group :development, :test do
   gem 'pry-rails'

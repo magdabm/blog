@@ -10,7 +10,9 @@
    <strong>Title:</strong>
    <%= @article.title %>
 </p>
-
+<p>
+    <%= image_tag(@article.cover.url, alt: 'Image') if @article.cover? %></p>
+</p>
 <p>
    <strong>Text:</strong>
    <%= @article.text %>
