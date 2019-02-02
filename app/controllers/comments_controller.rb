@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+
    http_basic_authenticate_with name: "admin", password: "secret", only: :destroy
    before_action :find_article
    before_action :authenticate_user!
@@ -8,6 +9,7 @@ class CommentsController < ApplicationController
       @comment.article = @article
       @comment.user = current_user if current_user
       @like = Like.find_or_initialize_by(article: @article, user: current_user)
+      
       if @comment.save
          flash[:notice] = "Your comment has been added to the article."
          redirect_to article_path(@article)

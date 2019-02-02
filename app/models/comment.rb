@@ -1,9 +1,17 @@
 class Comment < ApplicationRecord
 
-   include ActiveModel::Validations
+ validates :body, presence: true, length: { in: 5..500 }
 
-   validates :body, presence: true, length: { in: 5..500 }
+ belongs_to :article, counter_cache: true
+ belongs_to :user
+ has_many :opinions
 
-   belongs_to :article, counter_cache: true
-   belongs_to :user
+
+ def rating_sum
+   array = opinions.map do |o|
+     o.opinion
+   end
+   array.sum
+ end
+
 end
