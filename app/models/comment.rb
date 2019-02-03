@@ -4,7 +4,8 @@ class Comment < ApplicationRecord
 
  belongs_to :article, counter_cache: true
  belongs_to :user
- has_many :opinions
+ has_many :opinions, dependent: :destroy
+ has_many :users, through: :opinions
 
 
  def rating_sum

@@ -7,7 +7,6 @@ class OpinionsController < ApplicationController
     @opinion.user = current_user if current_user
     @opinion.comment = @comment
     @opinion.comment.article = @article
-
     @opinion.save
 
     redirect_to article_path(@article)
@@ -16,7 +15,7 @@ class OpinionsController < ApplicationController
   def destroy
     @opinion = Opinion.find(params[:id])
     @opinion.destroy
-    redirect_to article_comments_path(opinion.article)
+    redirect_to article_path(@opinion.comment.article)
   end
 
   private

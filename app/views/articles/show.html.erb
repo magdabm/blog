@@ -49,13 +49,20 @@
 <% if sponsored_article?(@article) %>
   <p>Komentarze zablokowane</p>
 <% else %>
-<h1>Comments</h1>
-
-<%= render @article.comments.includes(:user) %>
-<%# to samo co <% @article.comments.each do |comment| %>
-                  <%#= #render comment %>
-                  <%# end %>
+  <h1>Comments</h1>
+  <%#= render @article.comments.includes(:user) %>
+  <% @article.comments.includes(:user).each do |comment| %>
+    <% if comment.opinions.sum(:opinion) < -2 %>
+      <span style="background-color: Blue"> Komentarz zablokowany </span>
+      <br>
+      <br>
+    <% else %>
+      <%= render comment %>
+    <% end %>
+  <% end %>
 <% end %>
+
+
 <h3> Add a comment </h3>
 <%= render 'comments/form' %>
 

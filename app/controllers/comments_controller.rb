@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
       @comment.article = @article
       @comment.user = current_user if current_user
       @like = Like.find_or_initialize_by(article: @article, user: current_user)
-      
+
       if @comment.save
          flash[:notice] = "Your comment has been added to the article."
          redirect_to article_path(@article)
@@ -21,6 +21,7 @@ class CommentsController < ApplicationController
    def destroy
       @comment = Comment.find(params[:id])
       return unless authorize_comment
+    
       @comment.destroy
       flash[:notice] = "Your comment has been deleted."
       redirect_to article_path(@article)
