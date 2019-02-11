@@ -1,24 +1,22 @@
 # README
+The "blog" is an app from Ruby on Rails course with basic functionalities.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Ruby version
+2.5.3
 
-Things you may want to cover:
+## Rails version
+5.2.2
 
-* Ruby version
+## Database
+PostgreSQL
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Used additional gems
+  * bootstrap 4.0
+  * devise
+  * pry-rails
+  * carrierwave 1.0
+  * cloudinary
+  * kaminari
+  * bootstrap4-kaminari-views
+  * font-awesome-rails
+  * pry-rails
