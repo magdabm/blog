@@ -10,11 +10,29 @@
    <strong>Date:</strong>
    <%= comment.created_at %>
 </p>
+<p>
+  <strong>Rates amount:</strong>
+  <%= comment.opinions.count %>
+</p>
+<p>
+  <strong>Rating of comment:</strong>
+  <%= comment.opinions.sum(:opinion) %>
+</p>
 
 <% if comment.user == current_user || current_user&.admin? %>
-   <%= link_to 'Edit', edit_article_comment_path(article_id: comment.article.id, id: comment.id) %>
-   <%= link_to 'Destroy', article_comment_path(article_id: comment.article.id, id: comment.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to 'Edit', edit_article_comment_path(article_id: comment.article.id, id: comment.id) %>
+  <%= link_to 'Destroy', article_comment_path(article_id: comment.article.id, id: comment.id), method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
 
+
+<% if opinion = comment.opinions.where(user: current_user).first %>
+  <%= link_to "Destroy opinion", article_comment_opinion_path(article_id: @article.id, comment_id: comment.id, id: opinion.id), method: :delete %>
+<% else %>
+  <%= form_for [@article, comment, @opinion], url: article_comment_opinions_path(@article, comment, @opinion) do |f| %>
+    <%= f.label :opinion %>
+    <%= f.collection_radio_buttons :opinion, [[1, 'Plus'], [-1, 'Minus']], :first, :last %>
+    <%= f.submit %>
+  <% end %>
+<% end %>
 <br>
 <br>
